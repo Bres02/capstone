@@ -13,6 +13,8 @@ public class MoveOnClick : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.destination = targetLocation.position;
+
     }
 
     private void Update()
@@ -24,7 +26,6 @@ public class MoveOnClick : MonoBehaviour
             agent.destination = targetLocation.position;
         }
     }
-    
     private void OnDrawGizmos()
     {
         DrawGizmos(agent, showPath, showAhead);
