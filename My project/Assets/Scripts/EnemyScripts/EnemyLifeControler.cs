@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class EnemyLifeControler : MonoBehaviour
 {
-    public int Life;
-
+    public float MaxLife;
+    [SerializeField] private float Life;
+    [SerializeField] EnemyHealthbar healthbar;
+    private void Awake()
+    {
+        healthbar = GetComponentInChildren<EnemyHealthbar>();
+    }
+    private void Start()
+    {
+        Life = MaxLife;
+    }
     public void OnDamage(int damage)
     {
-        Debug.Log("ouch");
         Life -= damage;
+        healthbar.UpdateHealthbar(Life,MaxLife);
         if (Life <= 0)
         {
             Destroy(gameObject);

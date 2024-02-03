@@ -699,6 +699,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 484062551773806116, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484062551773806116, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154627247423614688, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2788094561886283255, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.87
@@ -747,6 +799,14 @@ PrefabInstance:
       propertyPath: targetLocation
       value: 
       objectReference: {fileID: 655719278}
+    - target: {fileID: 6811749315652028304, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339625606318663478, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.0000763
+      objectReference: {fileID: 0}
     - target: {fileID: 9001885004750070398, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
       propertyPath: m_Name
       value: enemy (1)
@@ -5396,6 +5456,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 484062551773806116, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 484062551773806116, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2788094561886283255, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.45
@@ -5444,6 +5512,10 @@ PrefabInstance:
       propertyPath: targetLocation
       value: 
       objectReference: {fileID: 655719278}
+    - target: {fileID: 6811749315652028304, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9001885004750070398, guid: 6c67b29b1ab2d984692b271872a185af, type: 3}
       propertyPath: m_Name
       value: enemy
