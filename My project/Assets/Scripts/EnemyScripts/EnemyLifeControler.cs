@@ -22,7 +22,6 @@ public class EnemyLifeControler : MonoBehaviour
         if (Life <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("im dead");
         }
     }
     // Update is called once per frame

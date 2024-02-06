@@ -30,7 +30,13 @@ public class MoveOnClick : MonoBehaviour
     {
         DrawGizmos(agent, showPath, showAhead);
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            
+        }
+    }
     public static void DrawGizmos(NavMeshAgent agent, bool showPath, bool showAhead)
     {
         if (Application.isPlaying && agent != null)

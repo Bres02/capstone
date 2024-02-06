@@ -93,7 +93,6 @@ public class BasicTowerScript : MonoBehaviour
         else if (enemiesInRange)
         {
             enemiesInRange = false;
-            Debug.Log("why god why");
         }
     }    
     //Shows the objects viewable radius and the cone of sight for debug purposes
