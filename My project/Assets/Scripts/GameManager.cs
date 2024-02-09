@@ -5,7 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public LayerMask tilemapLayer;
-
+    [SerializeField] GameObject[] towerLocation;
+    [SerializeField] GameObject tower;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +25,30 @@ public class GameManager : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.gameObject.tag);
+                Debug.Log(getClosestTowerLocation(hit.point).transform.position);
+                if (hit.collider.gameObject.tag == "TowerLocation")
+                {
+                    getClosestTowerLocation(hit.point).GetComponent<Testspawner1>().createTower();                    
+                }
+                
             }
         }
 
+    }
+    public GameObject getClosestTowerLocation(Vector3 givenposition)
+    {
+        GameObject closestTower = null;
+        float minDist = Mathf.Infinity;
+        foreach (GameObject trans in towerLocation)
+        {
+            float dist = Vector3.Distance(trans.transform.position, givenposition);
+            if (dist < minDist)
+            {
+                closestTower = trans;
+                minDist = dist;
+            }
+        }
+
+        return closestTower;
     }
 }
