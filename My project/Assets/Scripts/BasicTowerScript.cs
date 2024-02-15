@@ -17,12 +17,15 @@ public class BasicTowerScript : MonoBehaviour
     [Header("shooting")]
     public GameObject bullet;
     public int damage = 5; 
+    public float attackSpeed = 1f;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(FOVRoutine());
         StartCoroutine(shotCooldown());
+
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -40,7 +43,7 @@ public class BasicTowerScript : MonoBehaviour
     }
     private IEnumerator shotCooldown()
     {
-        float delay = 1f;
+        float delay = attackSpeed;
         WaitForSeconds wait = new WaitForSeconds(delay);
 
         while (true)

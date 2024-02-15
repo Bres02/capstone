@@ -1,13 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public LayerMask tilemapLayer;
     [SerializeField] GameObject[] towerLocation;
-    [SerializeField] GameObject tower;
-    
+
+    [Header("Tower UI")]
+    [SerializeField] private Canvas towerInfo;
+    [SerializeField] public TMP_Text towerName;
+    [SerializeField] public TMP_Text towerAttackSpeed;
+    [SerializeField] public TMP_Text towerAttackDamage;
+
+    [Header("Enemie UI")]
+    [SerializeField] private Canvas enemieInfo;
+    [SerializeField] public TMP_Text enemieName;
+    [SerializeField] public TMP_Text enemieAttackSpeed;
+    [SerializeField] public TMP_Text enemieAttackDamage;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,15 +36,32 @@ public class GameManager : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log(getClosestTowerLocation(hit.point).transform.position);
                 if (hit.collider.gameObject.tag == "TowerLocation")
                 {
                     getClosestTowerLocation(hit.point).GetComponent<Testspawner1>().createTower();                    
+                }else if (hit.collider.gameObject.tag =="Tower")
+                {
+                    enemieInfo.gameObject.SetActive(false);
+                    displayTowerInfo(hit.collider.gameObject.name, 
+                        hit.collider.gameObject.GetComponent<BasicTowerScript>().attackSpeed, 
+                        hit.collider.gameObject.GetComponent<BasicTowerScript>().damage);
+                    towerInfo.gameObject.SetActive(true);
+                }else if(hit.collider.gameObject.tag == "Enemy")
+                {
+                    towerInfo.gameObject.SetActive(false);
+
+                    enemieInfo.gameObject.SetActive(true);
                 }
                 
             }
         }
 
+    }
+    public void displayTowerInfo(string name, float attackSpeed, int damge)
+    {
+        towerName.text = name;
+        towerAttackSpeed.text = attackSpeed.ToString();
+        towerAttackDamage.text = damge.ToString();
     }
     public GameObject getClosestTowerLocation(Vector3 givenposition)
     {
