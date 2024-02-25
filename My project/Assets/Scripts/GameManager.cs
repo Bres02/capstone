@@ -5,7 +5,10 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] Grid gridlayout;
+    [SerializeField] int pointInArray;
     public LayerMask tilemapLayer;
+    
     [SerializeField] GameObject[] towerLocation;
 
     [Header("Tower UI")]
@@ -38,7 +41,10 @@ public class GameManager : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "TowerLocation")
                 {
-                    getClosestTowerLocation(hit.point).GetComponent<Testspawner1>().createTower();                    
+                    //getClosestTowerLocation(hit.point).GetComponent<Testspawner1>().createTower();
+                    Vector3Int cellPosition = gridlayout.WorldToCell(hit.point);
+                    Vector3 cellCenter = gridlayout.GetCellCenterWorld(cellPosition);
+                    towerLocation[pointInArray].transform.position = cellCenter;
                 }else if (hit.collider.gameObject.tag =="Tower")
                 {
                     enemieInfo.gameObject.SetActive(false);
