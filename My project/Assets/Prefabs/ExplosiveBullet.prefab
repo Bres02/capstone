@@ -100,4 +100,5 @@ MonoBehaviour:
   speed: 5
   damage: 0
   explosionDamage: 0
-  range: 5
+  range: 2
+  seekrun: 0

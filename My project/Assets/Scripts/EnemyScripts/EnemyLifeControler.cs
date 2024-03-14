@@ -15,7 +15,7 @@ public class EnemyLifeControler : MonoBehaviour
     {
         Life = MaxLife;
     }
-    public void OnDamage(int damage)
+    public void OnDamage(float damage)
     {
         Life -= damage;
         healthbar.UpdateHealthbar(Life,MaxLife);

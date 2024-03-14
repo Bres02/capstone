@@ -48,26 +48,39 @@ public class GameManager : MonoBehaviour
                 }else if (hit.collider.gameObject.tag =="Tower")
                 {
                     enemieInfo.gameObject.SetActive(false);
-                    displayTowerInfo(hit.collider.gameObject.name, 
-                        hit.collider.gameObject.GetComponent<BasicTowerScript>().attackSpeed, 
-                        hit.collider.gameObject.GetComponent<BasicTowerScript>().damage);
                     towerInfo.gameObject.SetActive(true);
+                    displayTowerInfo(hit.collider.gameObject.name, 
+                        hit.collider.gameObject.GetComponent<BasicTowerScript>().towerstats.attackSpeed, 
+                        hit.collider.gameObject.GetComponent<BasicTowerScript>().towerstats.attackDamage);
+
                 }else if(hit.collider.gameObject.tag == "Enemy")
                 {
                     towerInfo.gameObject.SetActive(false);
-
                     enemieInfo.gameObject.SetActive(true);
+                   
                 }
-                
+                else if(hit.collider.gameObject.tag == "ExplosiveTower")
+                {
+                    enemieInfo.gameObject.SetActive(false);
+                    towerInfo.gameObject.SetActive(true);
+                    displayTowerInfo(hit.collider.gameObject.name,
+                        hit.collider.gameObject.GetComponent<ExplosiveTowerScript>().towerstats.attackSpeed,
+                        hit.collider.gameObject.GetComponent<ExplosiveTowerScript>().towerstats.attackDamage);
+                }
+
             }
         }
 
     }
-    public void displayTowerInfo(string name, float attackSpeed, int damge)
+    public void displayTowerInfo(string name, float attackSpeed, float damage)
     {
         towerName.text = name;
         towerAttackSpeed.text = attackSpeed.ToString();
-        towerAttackDamage.text = damge.ToString();
+        towerAttackDamage.text = damage.ToString();
+    }
+    public void displayEnemyInfo(string name, float maxHealth, float currentHealth,float damage)
+    {
+        
     }
     public GameObject getClosestTowerLocation(Vector3 givenposition)
     {

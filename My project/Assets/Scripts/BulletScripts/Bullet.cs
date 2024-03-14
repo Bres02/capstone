@@ -6,18 +6,28 @@ public class Bullet : MonoBehaviour
 {
     private Transform target;
     public float speed;
-    public int damage;
-    public void Seek(Transform _target, int _damage)
-    {
+    public float damage;
+    public bool seekrun = false;
 
-        target = _target;
-        damage = _damage;
+    public void Seek(Transform _target, float _damage)
+    {
+        if (_target == null)
+        {
+
+        }
+        else
+        {
+            target = _target;
+            damage = _damage;
+            seekrun = true;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
+        if (target == null && seekrun == true)
         {
             Destroy(gameObject);
             return;
@@ -35,7 +45,7 @@ public class Bullet : MonoBehaviour
     }
     void HitTarget()
     {
-        target.gameObject.GetComponent<EnemyLifeControler>().OnDamage(damage);
+        target.gameObject.GetComponent<BasicEnemy>().OnDamage(damage);
         Destroy(gameObject);
     }
 }

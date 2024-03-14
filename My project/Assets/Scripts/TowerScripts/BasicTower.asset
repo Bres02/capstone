@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e87a1ce13ad6024181a9e66e07dd282, type: 3}
+  m_Name: BasicTower
+  m_EditorClassIdentifier: 
+  Range: 5
+  attackSpeed: 1
+  attackDamage: 5
+  upgradeCost: 100
+  towerEffect1: 0
+  towerEffect2: 0
+  towerEffect3: 0
+  levelSprite: []
+  bullet: {fileID: 8475262674056192342, guid: 07da1b1992de76443b2493fbfd7b25a9, type: 3}

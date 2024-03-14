@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6886786603577944134}
   m_Layer: 0
   m_Name: explosive tower
-  m_TagString: Untagged
+  m_TagString: ExplosiveTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.85261345, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f58f67c1bdd6647bcfebd4ce6d5106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 5
+  towerstats: {fileID: 11400000, guid: 119e56aac0fd487479e6e12bc5354c3f, type: 2}
   enemiesInRange: 0
   rangeCheck:
   - {fileID: 0}
@@ -113,9 +113,6 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 64
-  bullet: {fileID: 8859292044770693215, guid: 4939ebd6db140654cb487e75d0210e7b, type: 3}
-  damage: 2
-  attackSpeed: 1
 --- !u!60 &6886786603577944134
 PolygonCollider2D:
   m_ObjectHideFlags: 0

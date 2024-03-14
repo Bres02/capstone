@@ -5,19 +5,12 @@ using UnityEngine.UIElements;
 
 public class ExplosiveTowerScript : MonoBehaviour
 {
-    [Header("view range")]
-    public float viewRadius = 5f;
+    [SerializeField] public TowerScriptableObject towerstats;
     public bool enemiesInRange;
-
-    [Header("targeting")]
     public Collider2D[] rangeCheck;
     public GameObject[] enemieRef;
     public LayerMask targetMask;
 
-    [Header("shooting")]
-    public GameObject bullet;
-    public int damage = 5;
-    public float attackSpeed = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,21 +18,25 @@ public class ExplosiveTowerScript : MonoBehaviour
         StartCoroutine(shotCooldown());
 
     }
-
     void shoot()
     {
-        GameObject bulletGo = (GameObject)Instantiate(bullet, this.transform.position, this.transform.rotation);
-        ExplosiveBullet bulletScript = bulletGo.GetComponent<ExplosiveBullet>();
-        Debug.Log("ahah");
-
+        GameObject bulletGo = (GameObject)Instantiate(towerstats.bullet, this.transform.position, this.transform.rotation);
+        ExplosiveBullet bulletScript = bulletGo.GetComponent<ExplosiveBullet>(); 
         if (bulletScript != null)
         {
-            bulletScript.ExplosionSeek(enemieRef[enemieRef.Length - 1].transform, damage);
+            if (enemieRef[enemieRef.Length - 1] == null && enemieRef.Length >= 2)
+            {
+                bulletScript.ExplosionSeek(enemieRef[enemieRef.Length - 2].transform, towerstats.attackDamage);
+            }
+            else
+            {
+                bulletScript.ExplosionSeek(enemieRef[enemieRef.Length - 1].transform, towerstats.attackDamage);
+            } 
         }
     }
     private IEnumerator shotCooldown()
     {
-        float delay = attackSpeed;
+        float delay = towerstats.attackSpeed;
         WaitForSeconds wait = new WaitForSeconds(delay);
 
         while (true)
@@ -66,7 +63,7 @@ public class ExplosiveTowerScript : MonoBehaviour
     public void targeableEnemies()
     {
         rangeCheck = new Collider2D[0];
-        rangeCheck = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
+        rangeCheck = Physics2D.OverlapCircleAll(transform.position, towerstats.Range, targetMask);
         enemieRef = new GameObject[rangeCheck.Length];
         int i = 0;
         foreach (Collider2D collider in rangeCheck)
@@ -100,7 +97,7 @@ public class ExplosiveTowerScript : MonoBehaviour
         targeableEnemies();
         //Shows the radius as a white circle
         Gizmos.color = Color.white;
-        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, viewRadius);
+        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, towerstats.Range);
         //If the object can see player, it draws a red line towards player
         if (enemiesInRange)
         {
@@ -111,11 +108,5 @@ public class ExplosiveTowerScript : MonoBehaviour
             }
         }
 
-    }
-    //Method called above to calculate the angles of sight, place here to make format easier to read
-    private Vector2 DirectionFromviewAngle(float eulerY, float viewAngleDegrees)
-    {
-        viewAngleDegrees += eulerY;
-        return new Vector2(Mathf.Sin(viewAngleDegrees * Mathf.Deg2Rad), Mathf.Cos(viewAngleDegrees * Mathf.Deg2Rad));
     }
 }
