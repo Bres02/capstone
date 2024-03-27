@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using Unity.Burst.CompilerServices;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] Grid gridlayout;
     [SerializeField] int pointInArray;
     public LayerMask tilemapLayer;
-    
+    public GameObject focusGameobject;
     [SerializeField] GameObject[] towerLocation;
 
     [Header("Tower UI")]
@@ -20,8 +22,14 @@ public class GameManager : MonoBehaviour
     [Header("Enemie UI")]
     [SerializeField] private Canvas enemieInfo;
     [SerializeField] public TMP_Text enemieName;
-    [SerializeField] public TMP_Text enemieAttackSpeed;
-    [SerializeField] public TMP_Text enemieAttackDamage;
+    [SerializeField] public TMP_Text enemieMaxHealth;
+    [SerializeField] public TMP_Text enemieEndDamage;
+
+    [Header("Purchase tower UI")]
+    [SerializeField] private Canvas purchaseTower;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,39 +47,54 @@ public class GameManager : MonoBehaviour
 
             if (hit.collider != null)
             {
+                focusGameobject = hit.collider.gameObject;
                 if (hit.collider.gameObject.tag == "TowerLocation")
                 {
                     //getClosestTowerLocation(hit.point).GetComponent<Testspawner1>().createTower();
-                    Vector3Int cellPosition = gridlayout.WorldToCell(hit.point);
-                    Vector3 cellCenter = gridlayout.GetCellCenterWorld(cellPosition);
-                    towerLocation[pointInArray].transform.position = cellCenter;
-                }else if (hit.collider.gameObject.tag =="Tower")
+                    //Vector3Int cellPosition = gridlayout.WorldToCell(hit.point);
+                    //Vector3 cellCenter = gridlayout.GetCellCenterWorld(cellPosition);
+                    //towerLocation[pointInArray].transform.position = cellCenter;
+                    enemieInfo.gameObject.SetActive(false);
+                    towerInfo.gameObject.SetActive(false);
+                    purchaseTower.gameObject.SetActive(true);
+
+                }
+                else if (hit.collider.gameObject.tag =="Tower")
                 {
+                    purchaseTower.gameObject.SetActive(false);
                     enemieInfo.gameObject.SetActive(false);
                     towerInfo.gameObject.SetActive(true);
-                    displayTowerInfo(hit.collider.gameObject.name, 
-                        hit.collider.gameObject.GetComponent<BasicTowerScript>().towerstats.attackSpeed, 
-                        hit.collider.gameObject.GetComponent<BasicTowerScript>().towerstats.attackDamage);
+                    displayTowerInfo(focusGameobject.name,
+                                    focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackSpeed[focusGameobject.GetComponent<BasicTowerScript>().level],
+                                    focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackDamage[focusGameobject.GetComponent<BasicTowerScript>().level]);
 
-                }else if(hit.collider.gameObject.tag == "Enemy")
+                }
+                else if(hit.collider.gameObject.tag == "Enemy")
                 {
+                    purchaseTower.gameObject.SetActive(false);
                     towerInfo.gameObject.SetActive(false);
                     enemieInfo.gameObject.SetActive(true);
-                   
+                    displayEnemyInfo(focusGameobject.name, focusGameobject.GetComponent<EnemyLifeControler>().enemyScript.maxHealth,
+                        focusGameobject.GetComponent<EnemyLifeControler>().Life,
+                        focusGameobject.GetComponent<EnemyLifeControler>().enemyScript.reachEndDamage);
+
                 }
                 else if(hit.collider.gameObject.tag == "ExplosiveTower")
                 {
                     enemieInfo.gameObject.SetActive(false);
                     towerInfo.gameObject.SetActive(true);
-                    displayTowerInfo(hit.collider.gameObject.name,
-                        hit.collider.gameObject.GetComponent<ExplosiveTowerScript>().towerstats.attackSpeed,
-                        hit.collider.gameObject.GetComponent<ExplosiveTowerScript>().towerstats.attackDamage);
+                    displayTowerInfo(focusGameobject.name,
+                                    focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackSpeed[focusGameobject.GetComponent<BasicTowerScript>().level],
+                                    focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackDamage[focusGameobject.GetComponent<BasicTowerScript>().level]);
                 }
 
             }
         }
 
     }
+
+
+
     public void displayTowerInfo(string name, float attackSpeed, float damage)
     {
         towerName.text = name;
@@ -80,7 +103,9 @@ public class GameManager : MonoBehaviour
     }
     public void displayEnemyInfo(string name, float maxHealth, float currentHealth,float damage)
     {
-        
+        enemieName.text = name;
+        enemieMaxHealth.text = currentHealth + " / " + maxHealth.ToString();
+        enemieEndDamage.text = damage.ToString();
     }
     public GameObject getClosestTowerLocation(Vector3 givenposition)
     {

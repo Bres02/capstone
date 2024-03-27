@@ -1,29 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class ExplosiveBullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     private Transform target;
     public float speed;
     public float damage;
-    public float explosionDamage;
-    public float range = 5f;
     public bool seekrun = false;
-    public void ExplosionSeek(Transform _target, float _damage)
+
+    public void Seek(Transform _target, float _damage)
     {
         if (_target == null)
         {
-    
+
         }
         else
         {
-            seekrun = true;
             target = _target;
             damage = _damage;
-            explosionDamage = 1;
+            seekrun = true;
         }
+
     }
 
     // Update is called once per frame
@@ -38,7 +36,7 @@ public class ExplosiveBullet : MonoBehaviour
         Vector2 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
-        if (dir.magnitude <= distanceThisFrame)
+        if(dir.magnitude <= distanceThisFrame) 
         {
             HitTarget();
             return;
@@ -47,16 +45,7 @@ public class ExplosiveBullet : MonoBehaviour
     }
     void HitTarget()
     {
-        target.gameObject.GetComponent<BasicEnemy>().OnDamage(damage);
-        Collider2D[] explosionColliders = Physics2D.OverlapCircleAll(transform.position, range);
-        foreach (Collider2D colider in explosionColliders)
-        {
-            if (colider.gameObject.tag == "Enemy")
-            {
-                colider.gameObject.GetComponent<BasicEnemy>().OnDamage(explosionDamage);
-            }
-        }
+        target.gameObject.GetComponent<EnemyLifeControler>().OnDamage(damage);
         Destroy(gameObject);
     }
-
 }

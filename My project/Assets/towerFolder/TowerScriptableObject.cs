@@ -6,9 +6,9 @@ using UnityEngine;
 public class TowerScriptableObject : ScriptableObject
 {
     public float Range;
-    public float attackSpeed;
-    public float attackDamage;
-    public float upgradeCost;
+    public float[] attackSpeed;
+    public float[] attackDamage;
+    public float[] upgradeCost;
     public bool towerEffect1;
     public bool towerEffect2;
     public bool towerEffect3;

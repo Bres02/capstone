@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class ExplosiveTowerScript : MonoBehaviour
 {
     [SerializeField] public TowerScriptableObject towerstats;
+    public int level = 0;
     public bool enemiesInRange;
     public Collider2D[] rangeCheck;
     public GameObject[] enemieRef;
@@ -26,17 +27,17 @@ public class ExplosiveTowerScript : MonoBehaviour
         {
             if (enemieRef[enemieRef.Length - 1] == null && enemieRef.Length >= 2)
             {
-                bulletScript.ExplosionSeek(enemieRef[enemieRef.Length - 2].transform, towerstats.attackDamage);
+                bulletScript.ExplosionSeek(enemieRef[enemieRef.Length - 2].transform, towerstats.attackDamage[level]);
             }
             else
             {
-                bulletScript.ExplosionSeek(enemieRef[enemieRef.Length - 1].transform, towerstats.attackDamage);
+                bulletScript.ExplosionSeek(enemieRef[enemieRef.Length - 1].transform, towerstats.attackDamage[level]);
             } 
         }
     }
     private IEnumerator shotCooldown()
     {
-        float delay = towerstats.attackSpeed;
+        float delay = towerstats.attackSpeed[level];
         WaitForSeconds wait = new WaitForSeconds(delay);
 
         while (true)

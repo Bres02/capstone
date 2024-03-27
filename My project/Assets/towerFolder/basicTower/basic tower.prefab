@@ -98,14 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d205a183c33968f4f96078acd7ee5c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptableObject: {fileID: 0}
-  viewRadius: 5
+  towerstats: {fileID: 11400000, guid: 5ca909ddf7fe65541afe59e5e66591ab, type: 2}
+  level: 0
   enemiesInRange: 0
-  rangeCheck:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  rangeCheck: []
   enemieRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -114,9 +110,7 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 64
-  bullet: {fileID: 8475262674056192342, guid: 07da1b1992de76443b2493fbfd7b25a9, type: 3}
-  damage: 5
-  attackSpeed: 1
+  canShoot: 1
 --- !u!60 &839762390972227042
 PolygonCollider2D:
   m_ObjectHideFlags: 0

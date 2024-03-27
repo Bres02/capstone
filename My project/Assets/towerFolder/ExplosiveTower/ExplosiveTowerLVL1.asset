@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e87a1ce13ad6024181a9e66e07dd282, type: 3}
-  m_Name: BasicTower
+  m_Name: ExplosiveTowerLVL1
   m_EditorClassIdentifier: 
   Range: 5
-  attackSpeed: 1
-  attackDamage: 5
+  attackSpeed: 3
+  attackDamage: 4
   upgradeCost: 100
   towerEffect1: 0
   towerEffect2: 0
   towerEffect3: 0
   levelSprite: []
-  bullet: {fileID: 8475262674056192342, guid: 07da1b1992de76443b2493fbfd7b25a9, type: 3}
+  bullet: {fileID: 8859292044770693215, guid: 4939ebd6db140654cb487e75d0210e7b, type: 3}

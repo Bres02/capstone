@@ -7,15 +7,19 @@ public class BasicTowerScript : MonoBehaviour
 {
 
     [SerializeField] public TowerScriptableObject towerstats;
+    public int level = 0;
     public bool enemiesInRange;
     public Collider2D[] rangeCheck;
     public GameObject[] enemieRef;
     public LayerMask targetMask;
+    
+    public bool canShoot = true;
+    public float cooldownTimer = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(FOVRoutine());
-        StartCoroutine(shotCooldown());
     }
     void shoot()
     {
@@ -25,30 +29,35 @@ public class BasicTowerScript : MonoBehaviour
         {
             if (enemieRef[enemieRef.Length - 1] == null && enemieRef.Length >= 2)
             {
-                bulletScript.Seek(enemieRef[enemieRef.Length - 2].transform, towerstats.attackDamage);
-
+                bulletScript.Seek(enemieRef[enemieRef.Length - 2].transform, towerstats.attackDamage[level]);
+                canShoot = false;
+                cooldownTimer = towerstats.attackSpeed[level];
             }
             else
             {
-                bulletScript.Seek(enemieRef[enemieRef.Length - 1].transform, towerstats.attackDamage);
-
+                bulletScript.Seek(enemieRef[enemieRef.Length - 1].transform, towerstats.attackDamage[level]);
+                canShoot = false;
+                cooldownTimer = towerstats.attackSpeed[level];
             }
         }
     }
-    private IEnumerator shotCooldown()
+    private void FixedUpdate()
     {
-        float delay = towerstats.attackSpeed;
-        WaitForSeconds wait = new WaitForSeconds(delay);
-
-        while (true)
+        if (enemieRef.Length != 0 && canShoot)
         {
-            yield return wait;
-            if(enemieRef.Length!= 0)
+            shoot();
+        }
+        if (!canShoot)
+        {
+            cooldownTimer -= Time.deltaTime;
+            if (cooldownTimer <= 0f)
             {
-                shoot();
+                canShoot = true;
             }
         }
+
     }
+
     //Has the enemy run field of view every 0.2 seconds instead of every frame
     private IEnumerator FOVRoutine()
     {
@@ -92,7 +101,8 @@ public class BasicTowerScript : MonoBehaviour
             enemiesInRange = false;
         }
     }    
-    //Shows the objects viewable radius and the cone of sight for debug purposes
+
+    //Shows the objects viewable radius
     private void OnDrawGizmos()
     {
         targeableEnemies();
