@@ -10,5 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c2017e8b61f171449c1a7d24423dd36, type: 3}
-  m_Name: split
+  m_Name: SplitAction
   m_EditorClassIdentifier: 
+  babies: {fileID: 9001885004750070398, guid: 1d7bffe75ca82f141856f1924eb494ed, type: 3}

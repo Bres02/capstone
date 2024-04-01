@@ -24,7 +24,7 @@ public class TestSpawner : MonoBehaviour
         while (true)
         {
             yield return wait;
-            Instantiate(enemy);
+            GameObject obj = UnityEngine.Object.Instantiate<GameObject>(enemy, this.transform);
         }
     }
 }

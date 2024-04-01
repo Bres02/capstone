@@ -8,7 +8,7 @@ public class EnemyLifeControler : MonoBehaviour
     public EnemyScriptableObject enemyScript;
     [SerializeField] public float Life;
     [SerializeField] Slider healthbar;
-    public onDeathScriptableobjects[] deathActions;
+    public Deathactions[] deathActions;
     private void Awake()
     {
         Life = enemyScript.maxHealth;
@@ -30,9 +30,8 @@ public class EnemyLifeControler : MonoBehaviour
     }
     public void die()
     {
-        if (deathActions != null)
+        if (deathActions.Length > 0)
         {
-
             for (int i = 0; i < deathActions.Length; i++)
             {
                 deathActions[i].onDeathEffect(this.gameObject);

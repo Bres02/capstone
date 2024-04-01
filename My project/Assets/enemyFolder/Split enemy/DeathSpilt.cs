@@ -9,6 +9,7 @@ public class DeathSpilt : Deathactions
     public override void onDeathEffect(GameObject obj)
     {
         Instantiate(babies);
+        
         Instantiate(babies);
     }
 }

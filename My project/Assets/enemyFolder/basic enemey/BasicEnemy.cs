@@ -13,6 +13,7 @@ public class BasicEnemy : MonoBehaviour
 
     private void Awake()
     {
+        //Debug.Log(this.gameObject.name);
         agent = GetComponent<NavMeshAgent>();
         agent.speed = enemyScript.movementSpeed;
         agent.destination = targetLocation.position;
