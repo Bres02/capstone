@@ -8,6 +8,7 @@ public class EnemyLifeControler : MonoBehaviour
     public EnemyScriptableObject enemyScript;
     [SerializeField] public float Life;
     [SerializeField] Slider healthbar;
+    public onDeathScriptableobjects[] deathActions;
     private void Awake()
     {
         Life = enemyScript.maxHealth;
@@ -19,6 +20,7 @@ public class EnemyLifeControler : MonoBehaviour
         UpdateHealthbar(Life, enemyScript.maxHealth);
         if (Life <= 0)
         {
+            die();
             Destroy(gameObject);
         }
     }
@@ -26,5 +28,15 @@ public class EnemyLifeControler : MonoBehaviour
     {
         healthbar.value = currentValue / maxValue;
     }
-  
+    public void die()
+    {
+        if (deathActions != null)
+        {
+
+            for (int i = 0; i < deathActions.Length; i++)
+            {
+                deathActions[i].onDeathEffect(this.gameObject);
+            }
+        }
+    }
 }
