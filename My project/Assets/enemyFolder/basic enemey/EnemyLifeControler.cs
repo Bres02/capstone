@@ -21,7 +21,7 @@ public class EnemyLifeControler : MonoBehaviour
         if (Life <= 0)
         {
             die();
-            Destroy(gameObject);
+            
         }
     }
     public void UpdateHealthbar(float currentValue, float maxValue)
@@ -32,10 +32,12 @@ public class EnemyLifeControler : MonoBehaviour
     {
         if (deathActions.Length > 0)
         {
-            for (int i = 0; i < deathActions.Length; i++)
+            for (global::System.Int32 i = 0; i < deathActions.Length; i++)
             {
                 deathActions[i].onDeathEffect(this.gameObject);
             }
         }
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }

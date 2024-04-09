@@ -8,8 +8,8 @@ public class DeathSpilt : Deathactions
     public GameObject babies;
     public override void onDeathEffect(GameObject obj)
     {
-        Instantiate(babies);
-        
-        Instantiate(babies);
+        Instantiate(babies, obj.transform);
+        Instantiate(babies, obj.transform);
+        Debug.Log("happy");
     }
 }

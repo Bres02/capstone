@@ -17,3 +17,4 @@ MonoBehaviour:
   reachEndDamage: 5
   attackDamage: 4
   attackSpeed: 4
+  goldValue: 10

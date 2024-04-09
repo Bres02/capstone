@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     public GameObject focusGameobject;
     [SerializeField] GameObject[] towerLocation;
 
+    public int currentGold;
+    
+    
+    
     [Header("Tower UI")]
     [SerializeField] private Canvas towerInfo;
     [SerializeField] public TMP_Text towerName;
@@ -28,12 +32,9 @@ public class GameManager : MonoBehaviour
     [Header("Purchase tower UI")]
     [SerializeField] private Canvas purchaseTower;
 
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
+        currentGold = 100;
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
                 focusGameobject = hit.collider.gameObject;
                 if (hit.collider.gameObject.tag == "TowerLocation")
                 {
-                    //getClosestTowerLocation(hit.point).GetComponent<Testspawner1>().createTower();
+                    focusGameobject = getClosestTowerLocation(hit.point);
                     //Vector3Int cellPosition = gridlayout.WorldToCell(hit.point);
                     //Vector3 cellCenter = gridlayout.GetCellCenterWorld(cellPosition);
                     //towerLocation[pointInArray].transform.position = cellCenter;
@@ -87,6 +88,12 @@ public class GameManager : MonoBehaviour
                                     focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackSpeed[focusGameobject.GetComponent<BasicTowerScript>().level],
                                     focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackDamage[focusGameobject.GetComponent<BasicTowerScript>().level]);
                 }
+                else
+                {
+                    enemieInfo.gameObject.SetActive(false);
+                    towerInfo.gameObject.SetActive(false);
+                    purchaseTower.gameObject.SetActive(false);
+                }
 
             }
         }
@@ -107,7 +114,16 @@ public class GameManager : MonoBehaviour
         enemieMaxHealth.text = currentHealth + " / " + maxHealth.ToString();
         enemieEndDamage.text = damage.ToString();
     }
-    public GameObject getClosestTowerLocation(Vector3 givenposition)
+
+    public void createTower(GameObject tower)
+    {
+        Instantiate(tower, focusGameobject.transform);
+        enemieInfo.gameObject.SetActive(false);
+        towerInfo.gameObject.SetActive(false);
+        purchaseTower.gameObject.SetActive(false);
+    }
+
+    public GameObject getClosestTowerLocation(Vector2 givenposition)
     {
         GameObject closestTower = null;
         float minDist = Mathf.Infinity;

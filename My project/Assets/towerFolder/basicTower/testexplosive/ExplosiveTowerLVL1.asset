@@ -13,11 +13,20 @@ MonoBehaviour:
   m_Name: ExplosiveTowerLVL1
   m_EditorClassIdentifier: 
   Range: 5
-  attackSpeed: 3
-  attackDamage: 4
-  upgradeCost: 100
+  attackSpeed:
+  - 6
+  - 5
+  - 4
+  attackDamage:
+  - 5
+  - 6
+  - 7
+  upgradeCost:
+  - 30
+  - 40
+  - 50
   towerEffect1: 0
   towerEffect2: 0
   towerEffect3: 0
   levelSprite: []
-  bullet: {fileID: 8859292044770693215, guid: 4939ebd6db140654cb487e75d0210e7b, type: 3}
+  bullet: {fileID: 8859292044770693215, guid: 08a6ef34caca099409fd2149d229fdf3, type: 3}

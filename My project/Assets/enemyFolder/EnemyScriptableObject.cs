@@ -11,4 +11,5 @@ public class EnemyScriptableObject : ScriptableObject
     public float reachEndDamage;
     public float attackDamage;
     public float attackSpeed;
+    public int goldValue;
 }

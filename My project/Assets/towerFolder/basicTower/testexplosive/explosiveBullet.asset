@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c97efbe5f0d7eba4b93a235f8287bc64, type: 3}
-  m_Name: BabyEnemy
+  m_Script: {fileID: 11500000, guid: 3add1aa77449a1c4ca0c2e466f9df59a, type: 3}
+  m_Name: explosiveBullet
   m_EditorClassIdentifier: 
-  maxHealth: 1
-  movementSpeed: 2
-  reachEndDamage: 3
-  attackDamage: 4
-  attackSpeed: 4
-  goldValue: 0

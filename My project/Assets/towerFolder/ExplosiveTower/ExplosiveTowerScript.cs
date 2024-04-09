@@ -13,7 +13,7 @@ public class ExplosiveTowerScript : MonoBehaviour
     public LayerMask targetMask;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         StartCoroutine(FOVRoutine());
         StartCoroutine(shotCooldown());

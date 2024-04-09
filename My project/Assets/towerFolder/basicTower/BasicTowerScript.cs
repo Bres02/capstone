@@ -13,19 +13,21 @@ public class BasicTowerScript : MonoBehaviour
     public GameObject[] enemieRef;
     public LayerMask targetMask;
     
-    public bool canShoot = true;
-    public float cooldownTimer = 0;
+    public bool canShoot = false;
+    public float cooldownTimer;
     
     // Start is called before the first frame update
     void Start()
     {
+        FieldOfViewCheck();
         StartCoroutine(FOVRoutine());
+        cooldownTimer = towerstats.attackSpeed[level];
     }
     void shoot()
     {
         GameObject bulletGo = (GameObject) Instantiate(towerstats.bullet, this.transform.position, this.transform.rotation);
         Bullet bulletScript = bulletGo.GetComponent<Bullet>();
-        if (bulletScript != null )
+        if (bulletScript != null && enemieRef.Length >0)
         {
             if (enemieRef[enemieRef.Length - 1] == null && enemieRef.Length >= 2)
             {

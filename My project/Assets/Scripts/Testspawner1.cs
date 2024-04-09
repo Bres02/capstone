@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Testspawner1 : MonoBehaviour
 {
-    [SerializeField] GameObject tower;
-    public void createTower()
+    public void createTower(GameObject tower)
     {
         Instantiate(tower, this.transform);
     }

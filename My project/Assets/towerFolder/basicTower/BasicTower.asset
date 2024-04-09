@@ -22,9 +22,9 @@ MonoBehaviour:
   - 4
   - 5
   upgradeCost:
-  - 100
-  - 200
-  - 300
+  - 10
+  - 20
+  - 30
   towerEffect1: 0
   towerEffect2: 0
   towerEffect3: 0
