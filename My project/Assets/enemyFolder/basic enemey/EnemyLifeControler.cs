@@ -9,19 +9,21 @@ public class EnemyLifeControler : MonoBehaviour
     [SerializeField] public float Life;
     [SerializeField] Slider healthbar;
     public Deathactions[] deathActions;
+    private GameObject gameManager;
     private void Awake()
     {
         Life = enemyScript.maxHealth;
+        gameManager = GameObject.Find("GameManager");
     }
 
     public void OnDamage(float damage)
     {
         Life -= damage;
         UpdateHealthbar(Life, enemyScript.maxHealth);
-        if (Life <= 0)
+        if (Life <= 0 && !gameObject.GetComponent<BasicEnemy>().hasDied)
         {
+            gameObject.GetComponent<BasicEnemy>().hasDied = true;
             die();
-            
         }
     }
     public void UpdateHealthbar(float currentValue, float maxValue)
@@ -34,10 +36,13 @@ public class EnemyLifeControler : MonoBehaviour
         {
             for (global::System.Int32 i = 0; i < deathActions.Length; i++)
             {
-                deathActions[i].onDeathEffect(this.gameObject);
+                if (deathActions[i]!=null)
+                {
+                    deathActions[i].onDeathEffect(this.gameObject, gameManager);
+                }
             }
         }
+        gameManager.GetComponent<GameManager>().gainMoney(enemyScript.goldValue);
         gameObject.SetActive(false);
-        //Destroy(gameObject);
     }
 }

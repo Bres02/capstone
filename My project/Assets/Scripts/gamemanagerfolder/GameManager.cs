@@ -13,10 +13,14 @@ public class GameManager : MonoBehaviour
     public GameObject focusGameobject;
     [SerializeField] GameObject[] towerLocation;
 
-    public int currentGold;
-    
-    
-    
+    [Header("Money UI")]
+    public int currentMoney;
+    [SerializeField] public TMP_Text goldInfo;
+
+    [Header("Life UI")]
+    public int currentLife;
+    [SerializeField] public TMP_Text life;
+
     [Header("Tower UI")]
     [SerializeField] private Canvas towerInfo;
     [SerializeField] public TMP_Text towerName;
@@ -34,7 +38,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        currentGold = 100;
+        currentMoney = 100;
+        goldInfo.text = currentMoney.ToString();
+        life.text = currentLife.ToString(); 
     }
 
     // Update is called once per frame
@@ -117,12 +123,45 @@ public class GameManager : MonoBehaviour
 
     public void createTower(GameObject tower)
     {
-        Instantiate(tower, focusGameobject.transform);
+        GameObject obj = Instantiate(tower, focusGameobject.transform);
+        displayTowerInfo(obj.name, obj.GetComponent<BasicTowerScript>().towerstats.attackSpeed[focusGameobject.GetComponent<BasicTowerScript>().level],
+                                    obj.GetComponent<BasicTowerScript>().towerstats.attackDamage[focusGameobject.GetComponent<BasicTowerScript>().level]);
         enemieInfo.gameObject.SetActive(false);
-        towerInfo.gameObject.SetActive(false);
+        towerInfo.gameObject.SetActive(true);
         purchaseTower.gameObject.SetActive(false);
     }
 
+
+
+    public void enemyReachEnd(GameObject obj)
+    {
+        if (obj.tag == "Enemy")
+        {
+            float x = int.Parse(life.text);
+            x -= obj.GetComponent<BasicEnemy>().enemyScript.reachEndDamage;
+            life.text = x.ToString();
+            obj.SetActive(false);
+        }
+    }
+
+    public bool spendMoney(int amount)
+    {
+        if (amount > currentMoney)
+        {
+            return false;
+        }
+        else
+        {
+            currentMoney -= amount;
+            goldInfo.text = currentMoney.ToString();
+            return true;
+        }
+    }
+    public void gainMoney(int amount)
+    {
+        currentMoney += amount;
+        goldInfo.text = currentMoney.ToString();
+    }
     public GameObject getClosestTowerLocation(Vector2 givenposition)
     {
         GameObject closestTower = null;

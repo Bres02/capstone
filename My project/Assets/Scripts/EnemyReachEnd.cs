@@ -9,14 +9,16 @@ using System;
 public class EnemyReachEnd : MonoBehaviour
 {
     [SerializeField] public TMP_Text life;
+    public GameObject gameManager;
+
+    private void Start()
+    {
+
+        gameManager = GameObject.Find("GameManager");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
-        {
-            int x = int.Parse(life.text);
-            x -= 1;
-            life.text = x.ToString();
-            Destroy(collision.gameObject);
-        }
+        gameManager.GetComponent<GameManager>().enemyReachEnd(collision.gameObject);
     }
 }

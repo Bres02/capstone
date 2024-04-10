@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: SplitAction
   m_EditorClassIdentifier: 
   babies: {fileID: 9001885004750070398, guid: 1d7bffe75ca82f141856f1924eb494ed, type: 3}
+  babieName: BabyEnemy

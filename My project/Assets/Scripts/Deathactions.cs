@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class Deathactions : ScriptableObject
 {
-    public abstract void onDeathEffect(GameObject obj);
+    public abstract void onDeathEffect(GameObject obj, GameObject gameManager);
 }

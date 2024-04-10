@@ -11,7 +11,7 @@ public class BulletExplosion : HitActions
         Collider2D[] explosionColliders = Physics2D.OverlapCircleAll(obj.transform.position, obj.GetComponent<Bullet>().aoerange);
         foreach (Collider2D colider in explosionColliders)
         {
-            if (colider.gameObject.tag == "Enemy")
+            if (colider.gameObject.tag == "Enemy" && colider.gameObject.GetInstanceID() != target.GetInstanceID())
             {
                 colider.gameObject.GetComponent<EnemyLifeControler>().OnDamage(obj.GetComponent<Bullet>().damage/2f);
             }

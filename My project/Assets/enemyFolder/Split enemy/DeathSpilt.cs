@@ -6,10 +6,12 @@ using UnityEngine;
 public class DeathSpilt : Deathactions
 {
     public GameObject babies;
-    public override void onDeathEffect(GameObject obj)
+    public string babieName;
+    public override void onDeathEffect(GameObject obj, GameObject gameManager)
     {
-        Instantiate(babies, obj.transform);
-        Instantiate(babies, obj.transform);
-        Debug.Log("happy");
+        GameObject bab1 = gameManager.GetComponent<ObjectPooler>().SpawnFromPool(babieName, obj.transform.position, obj.transform.rotation);
+        bab1.GetComponent<BasicEnemy>().onSpawn();
+        GameObject bab2 = gameManager.GetComponent<ObjectPooler>().SpawnFromPool(babieName, obj.transform.position, obj.transform.rotation);
+        bab2.GetComponent<BasicEnemy>().onSpawn();
     }
 }

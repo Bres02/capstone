@@ -497,8 +497,7 @@ MonoBehaviour:
   enemyScript: {fileID: 11400000, guid: b005167781fcf084898074300044692b, type: 2}
   Life: 0
   healthbar: {fileID: 7027286081148832248}
-  deathActions:
-  - {fileID: 0}
+  deathActions: []
 --- !u!195 &5302428743679072129
 NavMeshAgent:
   m_ObjectHideFlags: 0

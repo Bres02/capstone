@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1115195790595667688}
   - component: {fileID: 839762390972227042}
   m_Layer: 0
-  m_Name: testExplosiveTower
+  m_Name: ExplosiveTower
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,11 +101,9 @@ MonoBehaviour:
   towerstats: {fileID: 11400000, guid: 119e56aac0fd487479e6e12bc5354c3f, type: 2}
   level: 0
   enemiesInRange: 0
-  rangeCheck: []
+  rangeCheck:
+  - {fileID: 0}
   enemieRef:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   targetMask:
     serializedVersion: 2
