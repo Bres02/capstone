@@ -11,6 +11,8 @@ TagManager:
   - TowerLocation
   - Tower
   - ExplosiveTower
+  - Walkway1
+  - Walkway2
   layers:
   - Default
   - TransparentFX

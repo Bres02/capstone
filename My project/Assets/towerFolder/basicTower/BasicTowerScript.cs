@@ -15,17 +15,21 @@ public class BasicTowerScript : MonoBehaviour
     
     public bool canShoot = false;
     public float cooldownTimer;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    public GameObject gameManager;
+
+    private void Awake()
     {
         FieldOfViewCheck();
         StartCoroutine(FOVRoutine());
         cooldownTimer = towerstats.attackSpeed[level];
+        gameManager = GameObject.Find("GameManager");
     }
+
     void shoot()
     {
-        GameObject bulletGo = (GameObject) Instantiate(towerstats.bullet, this.transform.position, this.transform.rotation);
+        //GameObject bulletGo = (GameObject) Instantiate(towerstats.bullet, this.transform.position, this.transform.rotation);
+        GameObject bulletGo = gameManager.GetComponent<ObjectPooler>().SpawnFromPool(towerstats.bullet,this.transform.position, this.transform.rotation);
         Bullet bulletScript = bulletGo.GetComponent<Bullet>();
         if (bulletScript != null && enemieRef.Length >0)
         {

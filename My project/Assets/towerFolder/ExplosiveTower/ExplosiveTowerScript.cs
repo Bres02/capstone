@@ -19,8 +19,9 @@ public class ExplosiveTowerScript : MonoBehaviour
         StartCoroutine(shotCooldown());
 
     }
+    
     void shoot()
-    {
+    {/*
         GameObject bulletGo = (GameObject)Instantiate(towerstats.bullet, this.transform.position, this.transform.rotation);
         ExplosiveBullet bulletScript = bulletGo.GetComponent<ExplosiveBullet>(); 
         if (bulletScript != null)
@@ -33,7 +34,7 @@ public class ExplosiveTowerScript : MonoBehaviour
             {
                 bulletScript.ExplosionSeek(enemieRef[enemieRef.Length - 1].transform, towerstats.attackDamage[level]);
             } 
-        }
+        }*/
     }
     private IEnumerator shotCooldown()
     {

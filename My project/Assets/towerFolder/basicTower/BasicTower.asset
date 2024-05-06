@@ -29,4 +29,4 @@ MonoBehaviour:
   towerEffect2: 0
   towerEffect3: 0
   levelSprite: []
-  bullet: {fileID: 8475262674056192342, guid: 07da1b1992de76443b2493fbfd7b25a9, type: 3}
+  bullet: BasicBullet

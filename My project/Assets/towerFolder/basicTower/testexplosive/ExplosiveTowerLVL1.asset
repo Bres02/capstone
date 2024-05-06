@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Range: 5
   attackSpeed:
-  - 6
+  - 3
   - 5
   - 4
   attackDamage:
@@ -29,4 +29,4 @@ MonoBehaviour:
   towerEffect2: 0
   towerEffect3: 0
   levelSprite: []
-  bullet: {fileID: 8859292044770693215, guid: 08a6ef34caca099409fd2149d229fdf3, type: 3}
+  bullet: ExplosiveBullet

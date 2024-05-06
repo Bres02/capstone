@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] towerLocation;
 
     [Header("Money UI")]
-    public int currentMoney;
+    public float currentMoney;
     [SerializeField] public TMP_Text goldInfo;
 
     [Header("Life UI")]
@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetMouseButtonUp(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -58,9 +57,6 @@ public class GameManager : MonoBehaviour
                 if (hit.collider.gameObject.tag == "TowerLocation")
                 {
                     focusGameobject = getClosestTowerLocation(hit.point);
-                    //Vector3Int cellPosition = gridlayout.WorldToCell(hit.point);
-                    //Vector3 cellCenter = gridlayout.GetCellCenterWorld(cellPosition);
-                    //towerLocation[pointInArray].transform.position = cellCenter;
                     enemieInfo.gameObject.SetActive(false);
                     towerInfo.gameObject.SetActive(false);
                     purchaseTower.gameObject.SetActive(true);
@@ -123,12 +119,16 @@ public class GameManager : MonoBehaviour
 
     public void createTower(GameObject tower)
     {
-        GameObject obj = Instantiate(tower, focusGameobject.transform);
-        displayTowerInfo(obj.name, obj.GetComponent<BasicTowerScript>().towerstats.attackSpeed[focusGameobject.GetComponent<BasicTowerScript>().level],
-                                    obj.GetComponent<BasicTowerScript>().towerstats.attackDamage[focusGameobject.GetComponent<BasicTowerScript>().level]);
-        enemieInfo.gameObject.SetActive(false);
-        towerInfo.gameObject.SetActive(true);
-        purchaseTower.gameObject.SetActive(false);
+        if (spendMoney(tower.GetComponent<BasicTowerScript>().towerstats.upgradeCost[0]))
+        {
+            GameObject obj = Instantiate(tower, focusGameobject.transform);
+            displayTowerInfo(obj.name, obj.GetComponent<BasicTowerScript>().towerstats.attackSpeed[obj.GetComponent<BasicTowerScript>().level],
+                                        obj.GetComponent<BasicTowerScript>().towerstats.attackDamage[obj.GetComponent<BasicTowerScript>().level]);
+            enemieInfo.gameObject.SetActive(false);
+            towerInfo.gameObject.SetActive(true);
+            purchaseTower.gameObject.SetActive(false);
+        }
+        
     }
 
 
@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool spendMoney(int amount)
+    public bool spendMoney(float amount)
     {
         if (amount > currentMoney)
         {
