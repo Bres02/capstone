@@ -12,6 +12,7 @@ public class TowerScriptableObject : ScriptableObject
     public bool towerEffect1;
     public bool towerEffect2;
     public bool towerEffect3;
+    public GameObject[] towerTop;
     public Sprite[] levelSprite;
     public string bullet;
 }

@@ -127,10 +127,20 @@ public class GameManager : MonoBehaviour
             enemieInfo.gameObject.SetActive(false);
             towerInfo.gameObject.SetActive(true);
             purchaseTower.gameObject.SetActive(false);
+            focusGameobject = obj;
         }
         
     }
-
+    public void levelupTower()
+    {
+        if (focusGameobject.GetComponent<BasicTowerScript>().level <= 2)
+        {
+            if (spendMoney(focusGameobject.GetComponent<BasicTowerScript>().towerstats.upgradeCost[focusGameobject.GetComponent<BasicTowerScript>().level + 1]))
+            {
+                focusGameobject.GetComponent<BasicTowerScript>().levelUp();
+            }
+        }
+    }
 
 
     public void enemyReachEnd(GameObject obj)

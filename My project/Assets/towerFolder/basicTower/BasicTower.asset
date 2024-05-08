@@ -28,5 +28,12 @@ MonoBehaviour:
   towerEffect1: 0
   towerEffect2: 0
   towerEffect3: 0
-  levelSprite: []
+  towerTop:
+  - {fileID: -2253911629886400664, guid: d9b88c75415eb5142854463f9194784a, type: 3}
+  - {fileID: -2253911629886400664, guid: d36027516ba56e7479bdfefafb3fdcb2, type: 3}
+  - {fileID: -2253911629886400664, guid: 4ba40927a335d9d4a820c495da6ff047, type: 3}
+  levelSprite:
+  - {fileID: -1439606639, guid: 529d49e2eaa4d2f4cb80e42e9515cb56, type: 3}
+  - {fileID: -310683465, guid: 529d49e2eaa4d2f4cb80e42e9515cb56, type: 3}
+  - {fileID: -1688070587, guid: 529d49e2eaa4d2f4cb80e42e9515cb56, type: 3}
   bullet: BasicBullet

@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.RuleTile.TilingRuleOutput;
+using Transform = UnityEngine.Transform;
 
 public class BasicTowerScript : MonoBehaviour
 {
@@ -35,12 +38,14 @@ public class BasicTowerScript : MonoBehaviour
         {
             if (enemieRef[enemieRef.Length - 1] == null && enemieRef.Length >= 2)
             {
+                transform.GetChild(level).gameObject.GetComponent<Animator>().SetTrigger("attack");
                 bulletScript.Seek(enemieRef[enemieRef.Length - 2].transform, towerstats.attackDamage[level]);
                 canShoot = false;
                 cooldownTimer = towerstats.attackSpeed[level];
             }
             else
             {
+                transform.GetChild(level).gameObject.GetComponent<Animator>().SetTrigger("attack");
                 bulletScript.Seek(enemieRef[enemieRef.Length - 1].transform, towerstats.attackDamage[level]);
                 canShoot = false;
                 cooldownTimer = towerstats.attackSpeed[level];
@@ -62,6 +67,15 @@ public class BasicTowerScript : MonoBehaviour
             }
         }
 
+
+    }
+    private void Update()
+    {
+        if (rangeCheck[0] != null)
+        {
+            Vector3 offset = rangeCheck[0].transform.position - transform.GetChild(level).transform.position;
+            transform.GetChild(level).transform.rotation = Quaternion.LookRotation(Vector3.forward, offset);
+        }
     }
 
     //Has the enemy run field of view every 0.2 seconds instead of every frame
@@ -101,13 +115,21 @@ public class BasicTowerScript : MonoBehaviour
             Vector2 directionToTarget = (target.position - transform.position).normalized;
             enemiesInRange = true;
 
+
+            //transform.GetChild(level).transform
         }
         else if (enemiesInRange)
         {
             enemiesInRange = false;
         }
-    }    
-
+    }
+    public void levelUp()
+    {
+        transform.GetChild(level).gameObject.SetActive(false);
+        level += 1;
+        transform.gameObject.GetComponent<SpriteRenderer>().sprite = towerstats.levelSprite[level];
+        transform.GetChild(level).gameObject.SetActive(true);
+    }
     //Shows the objects viewable radius
     private void OnDrawGizmos()
     {
