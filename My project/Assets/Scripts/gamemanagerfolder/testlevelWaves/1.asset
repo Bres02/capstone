@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesInWave:
   - BasicEnemy
-  - SplitEnemy
-  - BabyEnemy
-  timeAfterWave: 60
-  wavePath: 
+  - BasicEnemy
+  - BasicEnemy
+  - BasicEnemy
+  - BasicEnemy
+  timeAfterWave: 2
+  wavePath: Walkway1

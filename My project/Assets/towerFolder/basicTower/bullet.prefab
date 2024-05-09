@@ -97,5 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a31ff678b9fbc49806a92dcf2fa03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   damage: 0
+  seekrun: 0
+  aoerange: 0
+  hitActions: []

@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
     {
         if (target == null /*&& seekrun == true*/)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             return;
         }
 
@@ -58,6 +58,6 @@ public class Bullet : MonoBehaviour
                 hitActions[i].onHit(this.gameObject, target.gameObject);
             }
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

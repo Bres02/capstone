@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BabyEnemy
   m_EditorClassIdentifier: 
   maxHealth: 1
-  movementSpeed: 2
+  movementSpeed: 4
   reachEndDamage: 3
   attackDamage: 4
   attackSpeed: 4
-  goldValue: 0
+  goldValue: 5

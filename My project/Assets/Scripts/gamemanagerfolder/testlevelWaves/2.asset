@@ -15,5 +15,8 @@ MonoBehaviour:
   enemiesInWave:
   - BasicEnemy
   - BasicEnemy
-  timeAfterWave: 0
-  wavePath: 
+  - BasicEnemy
+  - BasicEnemy
+  - BasicEnemy
+  timeAfterWave: 2
+  wavePath: Walkway2

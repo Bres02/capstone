@@ -71,11 +71,15 @@ public class BasicTowerScript : MonoBehaviour
     }
     private void Update()
     {
-        if (rangeCheck[0] != null)
+        if (rangeCheck.Length >0)
         {
-            Vector3 offset = rangeCheck[0].transform.position - transform.GetChild(level).transform.position;
-            transform.GetChild(level).transform.rotation = Quaternion.LookRotation(Vector3.forward, offset);
+            if (rangeCheck[0] != null)
+            {
+                Vector3 offset = rangeCheck[0].transform.position - transform.GetChild(level).transform.position;
+                transform.GetChild(level).transform.rotation = Quaternion.LookRotation(Vector3.forward, offset);
+            }
         }
+
     }
 
     //Has the enemy run field of view every 0.2 seconds instead of every frame

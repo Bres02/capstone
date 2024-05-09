@@ -4,9 +4,13 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 using Unity.Burst.CompilerServices;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public int enemiesleft;
+    public bool wavesFinished = false;
+
     [SerializeField] Grid gridlayout;
     [SerializeField] int pointInArray;
     public LayerMask tilemapLayer;
@@ -26,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public TMP_Text towerName;
     [SerializeField] public TMP_Text towerAttackSpeed;
     [SerializeField] public TMP_Text towerAttackDamage;
+    [SerializeField] public TMP_Text towerlevel;
 
     [Header("Enemie UI")]
     [SerializeField] private Canvas enemieInfo;
@@ -38,7 +43,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        currentMoney = 100;
         goldInfo.text = currentMoney.ToString();
         life.text = currentLife.ToString(); 
     }
@@ -46,6 +50,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemiesleft ==0 && wavesFinished)
+        {
+            Application.Quit();
+        }
         if (Input.GetMouseButtonUp(0))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -69,7 +77,8 @@ public class GameManager : MonoBehaviour
                     towerInfo.gameObject.SetActive(true);
                     displayTowerInfo(focusGameobject.name,
                                     focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackSpeed[focusGameobject.GetComponent<BasicTowerScript>().level],
-                                    focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackDamage[focusGameobject.GetComponent<BasicTowerScript>().level]);
+                                    focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackDamage[focusGameobject.GetComponent<BasicTowerScript>().level],
+                                    focusGameobject.GetComponent<BasicTowerScript>().level + 1);
 
                 }
                 else if(hit.collider.gameObject.tag == "Enemy")
@@ -88,7 +97,8 @@ public class GameManager : MonoBehaviour
                     towerInfo.gameObject.SetActive(true);
                     displayTowerInfo(focusGameobject.name,
                                     focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackSpeed[focusGameobject.GetComponent<BasicTowerScript>().level],
-                                    focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackDamage[focusGameobject.GetComponent<BasicTowerScript>().level]);
+                                    focusGameobject.GetComponent<BasicTowerScript>().towerstats.attackDamage[focusGameobject.GetComponent<BasicTowerScript>().level],
+                                    focusGameobject.GetComponent<BasicTowerScript>().level+1);
                 }
                 else
                 {
@@ -104,11 +114,12 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void displayTowerInfo(string name, float attackSpeed, float damage)
+    public void displayTowerInfo(string name, float attackSpeed, float damage, int level)
     {
         towerName.text = name;
         towerAttackSpeed.text = attackSpeed.ToString();
         towerAttackDamage.text = damage.ToString();
+        towerlevel.text = level.ToString();
     }
     public void displayEnemyInfo(string name, float maxHealth, float currentHealth,float damage)
     {
@@ -123,7 +134,8 @@ public class GameManager : MonoBehaviour
         {
             GameObject obj = Instantiate(tower, focusGameobject.transform);
             displayTowerInfo(obj.name, obj.GetComponent<BasicTowerScript>().towerstats.attackSpeed[obj.GetComponent<BasicTowerScript>().level],
-                                        obj.GetComponent<BasicTowerScript>().towerstats.attackDamage[obj.GetComponent<BasicTowerScript>().level]);
+                                        obj.GetComponent<BasicTowerScript>().towerstats.attackDamage[obj.GetComponent<BasicTowerScript>().level],
+                                        obj.GetComponent<BasicTowerScript>().level+1);
             enemieInfo.gameObject.SetActive(false);
             towerInfo.gameObject.SetActive(true);
             purchaseTower.gameObject.SetActive(false);
@@ -133,7 +145,7 @@ public class GameManager : MonoBehaviour
     }
     public void levelupTower()
     {
-        if (focusGameobject.GetComponent<BasicTowerScript>().level <= 2)
+        if (focusGameobject.GetComponent<BasicTowerScript>().level < 2)
         {
             if (spendMoney(focusGameobject.GetComponent<BasicTowerScript>().towerstats.upgradeCost[focusGameobject.GetComponent<BasicTowerScript>().level + 1]))
             {
@@ -148,6 +160,10 @@ public class GameManager : MonoBehaviour
         if (obj.tag == "Enemy")
         {
             float x = int.Parse(life.text);
+            if (x <= 0)
+            {
+                SceneManager.LoadScene(0);
+            }
             x -= obj.GetComponent<BasicEnemy>().enemyScript.reachEndDamage;
             life.text = x.ToString();
             obj.SetActive(false);

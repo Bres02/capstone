@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1336219647794286644
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5628649052501845780}
+  - component: {fileID: 59571979157448952}
+  - component: {fileID: 7627406239167543608}
+  - component: {fileID: 1063025089097829991}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5628649052501845780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336219647794286644}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.92, y: -3.9, z: -0.004455802}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &59571979157448952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336219647794286644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6f92142a2579e4c97c553a563ae81c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridlayout: {fileID: 0}
+  pointInArray: 4
+  tilemapLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  focusGameobject: {fileID: 0}
+  towerLocation:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentMoney: 100
+  goldInfo: {fileID: 0}
+  currentLife: 50
+  life: {fileID: 0}
+  towerInfo: {fileID: 0}
+  towerName: {fileID: 0}
+  towerAttackSpeed: {fileID: 0}
+  towerAttackDamage: {fileID: 0}
+  enemieInfo: {fileID: 0}
+  enemieName: {fileID: 0}
+  enemieMaxHealth: {fileID: 0}
+  enemieEndDamage: {fileID: 0}
+  purchaseTower: {fileID: 0}
+--- !u!114 &7627406239167543608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336219647794286644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7413f25b00e71804ba384a3b9f35c6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool:
+  - tag: BasicBullet
+    prefab: {fileID: 8475262674056192342, guid: 07da1b1992de76443b2493fbfd7b25a9, type: 3}
+    size: 20
+  - tag: ExplosiveBullet
+    prefab: {fileID: 8859292044770693215, guid: 08a6ef34caca099409fd2149d229fdf3, type: 3}
+    size: 20
+  - tag: BasicEnemy
+    prefab: {fileID: 9001885004750070398, guid: e68dc594417e24142a1591cceeb39b6c, type: 3}
+    size: 20
+  - tag: SplitEnemy
+    prefab: {fileID: 9001885004750070398, guid: a96ca520344f46040b57a52f0a0984c2, type: 3}
+    size: 10
+  - tag: BabyEnemy
+    prefab: {fileID: 9001885004750070398, guid: 1d7bffe75ca82f141856f1924eb494ed, type: 3}
+    size: 20
+--- !u!114 &1063025089097829991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336219647794286644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf5961505cdbdf45abe420cc3609aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - {fileID: 11400000, guid: 8920daa1027f3ca438b9674baa926c64, type: 2}
+  - {fileID: 11400000, guid: 737b0b58e3c8d5744830116f453bcdb3, type: 2}
+  wavesCount: 0
+  partOfWaves: 0
+  startPosition: {fileID: 0}
+  cooldownTimer: 0
+  delay: 5
+  startNextWave: 0
+  spawningWave: 1

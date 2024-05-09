@@ -42,6 +42,7 @@ public class EnemyLifeControler : MonoBehaviour
                 }
             }
         }
+        gameManager.GetComponent<GameManager>().enemiesleft--;
         gameManager.GetComponent<GameManager>().gainMoney(enemyScript.goldValue);
         gameObject.SetActive(false);
     }
